@@ -1,0 +1,29 @@
+<section>
+    <h2>Commencez par vous inscrire</h2>
+    <h2>Ou bien connectez-vous</h2>
+</section>
+
+<?php if (isConnected()): ?>
+    <?php if ($potegroupesinvites): ?>
+        <section>
+            <h2>Les dernières invitations</h2>
+            <?php foreach ($potegroupesinvites as $potegroupesinvite): ?>
+                <article>
+                    <p><?=htmlspecialchars($potegroupesinvite['prenom']);?>
+                        <?=htmlspecialchars($potegroupesinvite['nom']);?> 
+                    vous invite à rejoindre le groupe: 
+                    <span><strong><?=htmlspecialchars($potegroupesinvite['nomgroupe']);?></strong></span>
+                    </p>
+                    <!-- Utilisation du button pour uniquement invoquer une fonction Javascript  -->
+                    <button name="rejoindre" type="button">
+                        Accepter <i class="fa-solid fa-check"></i>    
+                    </button>
+
+                </article>
+            <?php endforeach; ?>
+        </section>
+    <?php else: ?>
+        <!-- Si pas d'invitation à valider, voir le tableau -->
+        <h2>Allez voir votre Tableau </h2> <a href="<?=buildUrl('tableau');?>">Mon Tableau</a>
+    <?php endif; ?>
+<?php endif; ?>

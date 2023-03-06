@@ -1,0 +1,57 @@
+<form method="POST" action="<?=buildUrl('editUtilisateur', ['id' => $idUtilisateur]);?>">
+    <fieldset>
+        <legend>Modifier un utilisateur</legend>
+        <div>
+            <label for="prenom">Prénom</label>
+            <input type="text" id="prenom" name="prenom" value="<?=$prenom;?>">
+            <?php if (isset($errors['prenom'])): ?>
+                <p class="error"><?=htmlspecialchars($errors['prenom']);?></p>
+            <?php endif; ?>
+        </div>
+        <div>
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" name="nom" value="<?=$nom;?>">
+            <?php if (isset($errors['nom'])): ?>
+                <p class="error"><?=htmlspecialchars($errors['nom']);?></p>
+            <?php endif; ?>
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email" value="<?=$email;?>">
+            <?php if (isset($errors['email'])): ?>
+                <p class="error"><?=htmlspecialchars($errors['email']);?></p>
+            <?php endif; ?>
+        </div>
+        <div>
+            <label for="role">Role</label>
+            <select name="role" id="role">
+                <option value="<?=$role;?>"><?=$role;?></option>
+                <option value="USER">USER</option>
+                <option value="ADMIN">ADMIN</option>
+            </select>
+            <?php if (isset($errors['role'])): ?>
+                <p class="error"><?=htmlspecialchars($errors['role']);?></p>
+            <?php endif; ?>
+        </div>
+        <div>
+            <label for="actif">Actif</label>
+            <select name="actif" id="actif">
+                <option value="<?=$actif;?>"><?=$actif;?></option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+            </select>
+            <?php if (isset($errors['actif'])): ?>
+                <p class="error"><?=htmlspecialchars($errors['actif']);?></p>
+            <?php endif; ?>
+        </div>
+        <div>
+            <label for="commentaire">Commentaire</label>
+            <input type="text" id="commentaire" name="commentaire" value="<?=$commentaire;?>">
+            <?php if (isset($errors['commentaire'])): ?>
+                <p class="error"><?=htmlspecialchars($errors['commentaire']);?></p>
+            <?php endif; ?>
+        </div>
+        <input class="cta" type="submit" value="Enregistrer">
+    </fieldset>
+</form>
+    

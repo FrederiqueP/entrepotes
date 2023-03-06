@@ -1,0 +1,38 @@
+<form action="<?=buildUrl('inscription');?>" method="POST">
+    <div>
+        <label for="prenom">Prénom</label>
+        <input type="text" id="prenom" name="prenom" value="<?=htmlspecialchars($prenom);?>">
+        <?php if (isset($errors['prenom'])): ?>
+            <p class="error"><?=htmlspecialchars($errors['prenom']);?></p>
+        <?php endif; ?>
+    </div>
+    <div>
+        <label for="nom">Nom</label>
+        <input type="text" id="nom" name="nom" value="<?=htmlspecialchars($nom);?>">
+        <?php if (isset($errors['nom'])): ?>
+            <p class="error"><?=htmlspecialchars($errors['nom']);?></p>
+        <?php endif; ?>
+    </div>
+    <div>
+        <label for="email">Email</label>
+        <input type="text" id="email" name="email" value="<?=htmlspecialchars($email);?>">
+        <?php if (isset($errors['email'])): ?>
+            <p class="error"><?=htmlspecialchars($errors['email']);?></p>
+        <?php endif; ?>
+    </div>
+    <div>
+        <label for="motdepasse">Mot de passe</label>
+        <input type="password" id="motdepasse" name="motdepasse">
+        <?php if (isset($errors['motdepasse'])): ?>
+            <p class="error"><?=htmlspecialchars($errors['motdepasse']);?></p>
+        <?php endif; ?>
+    </div>
+    <div>
+        <label for="motdepasse-confirme">Mot de passe (confirmation)</label>
+        <input type="password" id="motdepasse-confirme" name="motdepasse-confirme">
+        <?php if (isset($errors['motdepasse-confirme'])): ?>
+            <p class="error"><?=htmlspecialchars($errors['motdepasse-confirme']);?></p>
+        <?php endif; ?>
+    </div>
+    <input class="cta" type="submit" value="Enregistrer">
+</form>

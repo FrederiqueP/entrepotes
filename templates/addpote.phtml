@@ -1,0 +1,69 @@
+<section>
+
+    <h3>Les Potes</h3>
+    <!-- on affiche le formulaire pour poster un commentaire seulement si l'utilisateur est connecté -->
+    <?php if (isConnected()): ?>
+        <div class="groupe">
+            <p>Groupe: <?=htmlspecialchars($groupe['nomgroupe']);?> </p>
+        </div>
+
+        <div class="createur">
+            <p>Créateur: <?=htmlspecialchars($createur['prenom']);?> </p>
+        </div>
+
+        <!-- ------- -->
+        <!-- envoi le contenu de l'enregistrement groupe dans un echo pour JS -->
+        <!-- ------- -->
+        <script type="text/javascript">
+            var mongroupe = <?php echo json_encode($groupe); ?>;
+        </script>
+        <!-- ------- -->
+
+        <form method="POST" action="<?=buildUrl('addpote', ['idGroupe' => $idGroupe]);?>">
+            <fieldset>
+                <legend>Ajouter un pote</legend>
+                <div>
+                    <label for="prenompote">Prénom du pote</label>
+                    <input type="text" id="prenompote" name="prenompote" value="<?=$prenompote;?>">
+                    <?php if (isset($errors['prenompote'])): ?>
+                        <p class="error"><?=htmlspecialchars($errors['prenompote']);?></p>
+                    <?php endif; ?>
+                </div>
+                <div>
+                    <label for="emailpote">Email du pote</label>
+                    <input type="text" id="emailpote" name="emailpote" value="<?=$emailpote;?>">
+                    <?php if (isset($errors['emailpote'])): ?>
+                        <p class="error"><?=htmlspecialchars($errors['emailpote']);?></p>
+                    <?php endif; ?>
+                </div>
+                <input class='cta' type="submit" value="Enregistrer">
+            </fieldset>
+        </form>
+    <?php else: ?>
+        <p>Pour ajouter un pote, <a href="<?=buildUrl('connexion');?>">connectez-vous</a> ou <a href="<?=buildUrl('inscription');?>">créez un compte</a> !</p>
+    <?php endif; ?>
+
+    <h4>Les Potes du groupe</h4>
+    <div class="pote-liste">
+        <table>
+            <thead>
+                <th scope="col">Prénom</th>
+                <th scope="col">Email</th>
+                <th scope="col">Envoyer une invitation pour rejoindre le groupe</th>
+            </thead>
+            <tbody>
+                <?php foreach ($potes as $pote): ?>
+                    <tr id="pote-<?=htmlspecialchars($pote['idPote']);?>">
+                        <td><?=htmlspecialchars($pote['prenompote']);?></td>
+                        <td><?=htmlspecialchars($pote['emailpote']);?></td>
+                        <td>
+                        <a class="invitation" 
+                            href="<?=buildUrl('invitation', ['idPote' => intval($pote['idPote'])]);?>"
+                        ><i class="fa-sharp fa-regular fa-paper-plane"></i> Envoi</a>
+                        </td>             
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+</section>

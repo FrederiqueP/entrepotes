@@ -1,0 +1,42 @@
+<h2>Les utilisateurs</h2>
+<table>
+    <thead>
+        <tr>
+            <td>&nbsp;</td>
+            <th scope="col">Prénom</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Email</th>
+            <th scope="col">Date de création</th>
+            <th scope="col">Role</th>
+            <th scope="col">Actif</th>
+            <th scope="col">Commentaire</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($users as $user): ?>
+            <tr id="user-<?=htmlspecialchars($user['idUtilisateur']);?>">
+                <th scope="row"><?=htmlspecialchars(intval($user['idUtilisateur']));?></th>
+                <td><?=htmlspecialchars($user['prenom']);?></td>
+                <td><?=htmlspecialchars($user['nom']);?></td>
+                <td><?=htmlspecialchars($user['email']);?></td>
+                <td><?=(new DateTimeImmutable($user['createdAt']))->format('d/m/Y');?></td>
+                <td><?=htmlspecialchars($user['role']);?></td>
+                <td><?=htmlspecialchars($user['actif']);?></td>
+                <td><?=htmlspecialchars($user['commentaire']);?></td>
+                <td>
+                    <a href="<?=buildUrl('editUtilisateur', ['id' => intval($user['idUtilisateur'])]);?>"><i class="fa-solid fa-pen-to-square"></i> Modifier</a>
+                    <a class="delete-user-button" 
+                    href="<?=buildUrl('delUtilisateur', ['id' => intval($user['idUtilisateur'])]);?>"
+                    data-ajax="<?=buildUrl('delUtilisateurAjax', ['id' => intval($user['idUtilisateur'])]);?>"
+                    ><i class="fa-solid fa-trash-can"></i> Supprimer</a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </body>
+</table>
+
+
+<h2>Les groupes</h2>
+
+<h2>Les sorties</h2>

@@ -1,0 +1,61 @@
+USE entrepotes;
+
+DROP TABLE IF EXISTS utilisateur;
+DROP TABLE IF EXISTS groupe;
+DROP TABLE IF EXISTS groupeutilisateur;
+DROP TABLE IF EXISTS pote;
+
+CREATE TABLE utilisateur(
+   idUtilisateur 	INT(3) UNSIGNED NOT NULL AUTO_INCREMENT,
+   prenom		VARCHAR(128)NOT NULL,
+   nom			VARCHAR(128)NOT NULL,
+   email 		VARCHAR(128)NOT NULL UNIQUE,
+   motdepasse		VARCHAR(255)NOT NULL,
+   role  		VARCHAR(128)NOT NULL,
+   actif		TINYINT(1)NOT NULL,
+   commentaire		VARCHAR(255) NULL,
+   createdAt 		DATETIME,
+   PRIMARY KEY (idUtilisateur) 
+)  ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE groupe
+(
+   idGroupe INT(3) UNSIGNED NOT NULL AUTO_INCREMENT,
+   nomgroupe VARCHAR(128) NOT NULL,
+   couleur VARCHAR(128), 
+   createdAt DATETIME,
+   createur INT(3) UNSIGNED NOT NULL,
+	CONSTRAINT fk_user
+		FOREIGN KEY (createur)
+		REFERENCES utilisateur(idUtilisateur),
+	PRIMARY KEY (idGroupe) 
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE groupeutilisateur(
+  idGroupe int(10) unsigned NOT NULL,
+  idUtilisateur int(10) unsigned NOT NULL,
+  	UNIQUE KEY (idGroupe,idUtilisateur),
+  	CONSTRAINT fk_liengroupe
+  		FOREIGN KEY (idGroupe)
+  		REFERENCES groupe(idGroupe),
+  	CONSTRAINT fk_lienutilisateur
+  		FOREIGN KEY (idUtilisateur)
+  		REFERENCES utilisateur(idUtilisateur)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE pote
+(
+   idPote INT(3) UNSIGNED NOT NULL AUTO_INCREMENT,
+   prenompote VARCHAR(128) NOT NULL,
+   emailpote VARCHAR(128)NOT NULL,
+   reponsepote VARCHAR(128),
+   groupepote INT(3) UNSIGNED NOT NULL,
+	CONSTRAINT fk_groupepote
+		FOREIGN KEY (groupepote) 
+		REFERENCES groupe(idGroupe),
+	PRIMARY KEY (idPote)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+SHOW TABLES;

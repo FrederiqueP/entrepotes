@@ -1,0 +1,14 @@
+<form action="<?=buildUrl('connexion');?>" method="POST">
+    <?php if (isset($error)): ?>
+        <p class="error"><?=htmlspecialchars($error);?></p>
+    <?php endif; ?>
+    <div>
+        <label for="email">Email</label>
+        <input type="text" id="email" name="email" value="<?=htmlspecialchars($email);?>">
+    </div>
+    <div>
+        <label for="password">Mot de passe</label>
+        <input type="password" id="password" name="password">
+    </div>
+    <input class="CTA" type="submit" value="Connexion">
+</form>

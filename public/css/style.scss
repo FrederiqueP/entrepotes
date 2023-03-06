@@ -1,0 +1,98 @@
+@import 'mixins';
+
+
+body{
+    width: 100%;
+    height: 90vh;
+    font-family: 'Source Sans Pro', sans-serif;
+    color: $colorText;
+    // @include XYcenteredFullHeightBlock;
+    background-color: $bgLightColor;
+}
+
+h1{
+    font-family: 'PT Serif', serif;
+    color: $colorTitle;
+}
+
+a{
+    font-family: 'Titillium Web', sans-serif;
+    color: $colorButton;
+}
+
+// call to action input type submit
+.cta{
+    color: $darkColorAction;
+    font-weight: bold;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    padding: 0 24px 0 24px;
+    background-color: $lightColorAction;
+    border: 2px solid $colorAction;
+    border-radius: 4px;
+    background: $lightColorAction; 
+    transition: 0.3s;
+    &:hover{
+        color: $lightColorAction;
+        background-color: $darkColorAction;
+        border: 2px solid $colorAction;
+        //$lightColorAction Neumorphism
+        // box-shadow:  20px 20px 60px #d9d67b,
+		//  -20px -20px 60px #ffffa7;
+        box-shadow: 0.2rem 0.2rem #d9d67b, -0.2rem -0.2rem #ffffa7;
+        transition: 0.3s;
+    }
+}
+
+form{ 
+    margin-top: 1rem;
+}
+
+.contenant{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+}
+
+//  convertir couleur hexa en hsl pour jouer sur la lumière
+//  https://colorem.net/
+
+.groupe{
+    background-color: hsl(43, 78, 90);
+}
+
+.sortie{
+    background-color: hsl(195, 45, 90);
+}
+
+.notification{
+    background-color: hsl(269, 24, 90);
+}
+
+.createur{
+    background-color: hsl(75, 53, 60);
+}
+
+
+.listegroupe{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+}
+
+.ungroupe{
+    background-color: $white;
+    border-width: 10px;
+    border-style: solid;
+    border-color: $colorAction;;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+.couronne{
+    color: #FFD700;
+}

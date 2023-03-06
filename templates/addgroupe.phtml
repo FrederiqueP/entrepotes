@@ -1,0 +1,14 @@
+<form method="POST" action="<?=buildUrl('addgroupe');?>">
+    <fieldset>
+        <legend>Ajouter un groupe</legend>
+        <div>
+            <label for="nomgroupe">Nom du groupe</label>
+            <input type="text" id="nomgroupe" name="nomgroupe">
+            <?php if (isset($errors['nomgroupe'])): ?>
+                <p class="error"><?=htmlspecialchars($errors['nomgroupe']);?></p>
+            <?php endif; ?>
+        </div>
+        <input class='cta' type="submit" value="Enregistrer">
+    </fieldset>
+</form>
+   

@@ -1,0 +1,39 @@
+<h2>Mon tableau</h2>
+<a href="<?=buildUrl('addgroupe');?>">Ajouter des groupes</a>
+<a href="<?=buildUrl('addsortie');?>">Ajouter des sorties</a>
+
+
+<?php if (isConnected()): ?>
+    <div class="contenant">
+        <section class="groupe">
+            <p>Les groupes</p>
+                <article class="listegroupe">
+                    <?php foreach ($groupes as $groupe): ?>
+                        <div class="ungroupe" data-couleur="<?=htmlspecialchars($groupe['couleur']);?>">
+                            <p><?=htmlspecialchars($groupe['nomgroupe']);?></p>
+                            <div> 
+                                <p><?=htmlspecialchars($groupe['idGroupe']);?>
+                                <i class="fa-sharp fa-solid fa-crown couronne"></i>
+                               </p>
+                                <div class="voirliste" data-idgroupe=<?=htmlspecialchars($groupe['idGroupe']);?>>
+                                    <p> Les potes <?=htmlspecialchars($groupe['idGroupe']);?> </p>
+                                    <p id="pote_<?=htmlspecialchars($groupe['idGroupe']);?>">
+                                    <!-- contenu de la liste de potes pour ce groupe -->
+                                    </p>
+                                </div>
+                            </div> 
+                        </div>    
+                         
+                    <?php endforeach; ?>
+                </article>
+        </section>
+        <section class="sortie">
+            <p>Les sorties</p>
+        </section>
+        <section class="notification">
+            <p>Les notifications</p>
+        </section>
+    </div>
+<?php else: ?>
+    <p>Pour voir cette page <a href="<?=buildUrl('connexion');?>">connectez-vous</a> ou <a href="<?=buildUrl('inscription');?>">créez un compte</a> !</p>
+<?php endif; ?>

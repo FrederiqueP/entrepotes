@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entre Potes</title>
+    
+    <!-- les google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital@1&family=Source+Sans+Pro&family=Titillium+Web&display=swap" rel="stylesheet">
+
+    <!-- Police géniale -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
+       
+    <!-- Mon CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- inclusion éventuelle de fichiers JavaScript propres à la page courante --> 
+    <?php if (isset($script)): ?>
+        <?=$script;?>
+    <?php endif; ?>
+
+
+</head>
+<body>
+    <header>
+        <h1>Entre Potes</h1>
+        <nav>
+            <a href="<?=buildUrl('accueil');?>">Accueil</a>
+            <?php if (isConnected()): ?>
+                <a href="<?=buildUrl('tableau');?>"> Mon Tableau</a>
+                <a href="<?=buildUrl('groupe');?>">Les groupes</a>
+                <a href="<?=buildUrl('sortie');?>">Les sorties</a>
+                 <?php if (getUserRole() == 'ADMIN'): ?>
+                    <a href="<?=buildUrl('admin');?>">Administration</a>
+                <?php endif; ?>
+                <span><?=htmlspecialchars(getUserFirstname());?> <?=htmlspecialchars(getUserLastname());?></span>
+                <a href="<?=buildUrl('deconnexion');?>">Déconnexion</a>
+            <?php else: ?>
+                <a href="<?=buildUrl('connexion');?>">Connexion</a>
+                <a href="<?=buildUrl('inscription');?>">Inscription</a>
+            <?php endif; ?>
+           
+        </nav>
+    </header>
+    <main>
+        <?php include '../templates/' . $template . '.phtml'; ?>
+    </main>
+    
+</body>
+</html>

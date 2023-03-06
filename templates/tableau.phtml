@@ -1,0 +1,43 @@
+<h2>Mon tableau</h2>
+<a href="<?=buildUrl('addgroupe');?>">Ajouter des groupes</a>
+<a href="<?=buildUrl('addsortie');?>">Ajouter des sorties</a>
+
+
+<?php if (isConnected()): ?>
+    <div class="contenant">
+        <section class="groupe">
+            <p>Les groupes</p>
+                <article class="listegroupe">
+                    <!-- On affiche tous les groupes de l'utilisateur connecté  -->
+                    <?php foreach ($utilgroupes as $utilgroupe): ?>
+                        <!-- Avec la couleur du groupe on modifie la couleur de la bordure -->
+                        <div class="ungroupe" data-couleur="<?=htmlspecialchars($utilgroupe['couleur']);?>">
+                            <!-- On affiche le nom du groupe -->
+                            <p><?=htmlspecialchars($utilgroupe['nomgroupe']);?></p>
+                            <div>                                
+                                <div class="voirliste" data-idgroupe=<?=htmlspecialchars($utilgroupe['idGroupe']);?>>
+                                    <p> Les potes <?=htmlspecialchars($utilgroupe['idGroupe']);?> 
+                                        <i class="fa-sharp fa-solid fa-chevron-down"></i>
+                                        <!-- Si l'utilisateur est le créateur du groupe on affiche une couronne -->
+                                        <span id="createur" ><i class="fa-sharp fa-solid fa-crown couronne"></i></span>
+                                    </p>
+                                </div>
+                                <div id="pote_<?=htmlspecialchars($utilgroupe['idGroupe']);?>" hidden>
+                                    <!-- contenu de la liste de potes pour ce groupe avec affichage-bascule -->
+                                </div>
+                            </div> 
+                        </div>    
+                         
+                    <?php endforeach; ?>
+                </article>
+        </section>
+        <section class="sortie">
+            <p>Les sorties</p>
+        </section>
+        <section class="notification">
+            <p>Les notifications</p>
+        </section>
+    </div>
+<?php else: ?>
+    <p>Pour voir cette page <a href="<?=buildUrl('connexion');?>">connectez-vous</a> ou <a href="<?=buildUrl('inscription');?>">créez un compte</a> !</p>
+<?php endif; ?>
